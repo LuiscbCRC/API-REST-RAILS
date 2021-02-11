@@ -1,4 +1,4 @@
-class CreateDeliveryDates < ActiveRecord::Migration[6.1]
+class CreateDeliveryDates < ActiveRecord::Migration[6.0]
   def change
     create_table :delivery_dates do |t|
       t.date :date

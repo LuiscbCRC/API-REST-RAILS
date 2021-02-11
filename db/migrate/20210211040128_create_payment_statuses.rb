@@ -1,4 +1,4 @@
-class CreatePaymentStatuses < ActiveRecord::Migration[6.1]
+class CreatePaymentStatuses < ActiveRecord::Migration[6.0]
   def change
     create_table :payment_statuses do |t|
       t.string :status

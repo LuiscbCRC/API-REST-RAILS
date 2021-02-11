@@ -1,4 +1,4 @@
-class CreatePaymentDates < ActiveRecord::Migration[6.1]
+class CreatePaymentDates < ActiveRecord::Migration[6.0]
   def change
     create_table :payment_dates do |t|
       t.date :date
