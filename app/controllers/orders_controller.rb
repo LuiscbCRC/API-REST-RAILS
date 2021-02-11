@@ -5,8 +5,16 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all
-    json_response(@orders)
+    if params[:date].nil?
+      @orders = Order.all
+      json_response(@orders)
+
+    else
+      @date = params[:date]
+      @idDate = DeliveryDate.find_by(date: @date).id
+      @orders = Order.find_by(delivery_date_id: @idDate)
+      json_response(@orders)
+    end
   end
 
   # POST /orders
@@ -22,6 +30,15 @@ class OrdersController < ApplicationController
 
   # PUT /orders/:id
   def update
+    if params[:payment_status_id].to_i == PaymentStatus.find_by(status: 'Pagada').id
+      @date = PaymentDate.create(date: Time.now)
+      @order.payment_date_id = @date.id
+    end
+
+    if params[:order_status_id].to_i == OrderStatus.find_by(status: 'Entregada').id
+      @date = DeliveryDate.create(date: Time.now)
+      @order.delivery_date_id = @date.id
+    end
     @order.update(order_params)
     head :no_content
   end
