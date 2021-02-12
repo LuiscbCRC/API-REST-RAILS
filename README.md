@@ -1,46 +1,50 @@
-![logo](https://res.cloudinary.com/practicaldev/image/fetch/s--qtLpDnvY--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/47qjegyxjsp8uq0oemkg.png)
+## Prueba técnica Vippinn/HelloWine
+En el presente proyecto se encuentra el API en Ruby on Rails, siguiendo los requerimientos entregados en la entrevista.
 
-## Dockerize Ruby on Rails App with PostgreSQL
-This is a demo of Rails API only application dockerized. And in docker-compose we run both the dockerized Rails app and PostgreSQL server.
-
-Accompanying blog post: [Deploy a Ruby on Rails API only application in Docker with PostgreSQL](https://dev.to/joker666/deploy-a-ruby-on-rails-api-only-application-in-docker-with-postgresql-1933)
-
-We create the application with 
-```ruby
-rails new docker-rails \
-  --database=postgresql \
-  --skip-action-mailbox \
-  --skip-action-text \
-  --skip-spring -T \
-  --skip-turbolinks \
-  --api
+Actualmente se esta utilizando las siguientes versiones:
+```bash
+ruby 2.6.5
+rails 6.0.3
+PostgreSQL 13
+Docker 20.10.2
 ```
 
-## Migration
-To run both the services
+## Docker
+Para utilizar el API debe realizar los siguientes pasos
 ```bash
 docker-compose -f docker-compose.yml up --build
 ```
 
-After that, we can run the following command for migration and seeding the database.
+Puede salirse de los servicios con Crtl + C para continuar con la configuración del proyecto.
+
+Después, debe correr las migraciones y llenar la base de datos con información para poder utilizar el API de una manera más sencilla.
 
 ```bash
 docker-compose run web rails db:migrate
 docker-compose run web rails db:seed
 ```
 
-## Contribution
-Want to contribute? Great!
+Por último puede volver a correr el primer comando mostrado o únicamente realizar:
+```bash
+docker-compose up
+```
 
-To fix a bug or enhance an existing code, follow these steps:
+## Ruby on Rails Local
+Para utilizar el proyecto de forma local, debe de realizar los siguientes comandos:
+```bash
+bundle install
+rake db:create
+rake db:migrate
+rake db:seed
+rails s
+```
 
-- Fork the repo
-- Create a new branch (`git checkout -b improve-feature`)
-- Make the appropriate changes in the files
-- Add changes to reflect the changes made
-- Commit your changes (`git commit -am 'Improve feature'`)
-- Push to the branch (`git push origin improve-feature`)
-- Create a Pull Request
+## Testing y documentación
+Para ingresar a la documentación debe de ingresar directamente en la página pricipal una vez que el servidor esté corriendo. De esta manera, al ingresar al navegador en localhost:3000, se le muestra la documentación
 
-## License
-MIT © [MD Ahad Hasan](https://github.com/joker666)
+Para correr el testing de la aplicación, basta con correr el comando:
+```bash
+bundle exec rspec
+```
+
+
