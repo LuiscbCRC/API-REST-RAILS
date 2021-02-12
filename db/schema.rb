@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `bin/rails
-# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_02_11_040443) do
     t.bigint "user_id", null: false
     t.bigint "payment_status_id", null: false
     t.bigint "order_status_id", null: false
-    t.bigint "delivery_date_id", null: false
-    t.bigint "payment_date_id", null: false
+    t.bigint "delivery_date_id"
+    t.bigint "payment_date_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["delivery_date_id"], name: "index_orders_on_delivery_date_id"
@@ -62,9 +62,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_040443) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "orders", "delivery_dates"
   add_foreign_key "orders", "order_statuses"
-  add_foreign_key "orders", "payment_dates"
   add_foreign_key "orders", "payment_statuses"
   add_foreign_key "orders", "users"
 end
