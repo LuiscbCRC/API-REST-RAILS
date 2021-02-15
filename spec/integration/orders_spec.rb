@@ -33,7 +33,6 @@ describe 'Orders' do
 
       response '404', 'Order not found' do
         let(:id) { -1 }
-
         run_test!
       end
     end
@@ -45,16 +44,17 @@ describe 'Orders' do
       tags 'Orders'
       description 'Query to retrieve all orders given a date. Date format must be YYYY-MM-DD'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :date
+      parameter name: :date, in: :path, type: :date
 
       response '200', 'Orders found' do
-        let(:order) { create(:order) }
-        let(:id) { order.id }
+        let(:delivery_date) { build(:delivery_date, date: Time.now) }
+        let(:order) { create(:order, delivery_date_id = delivery_date.id) }
+        let(:date) { order.id }
         run_test!
       end
 
       response '404', 'Order not found' do
-        let(:id) { -1 }
+        let(:date) { -1 }
 
         run_test!
       end
@@ -81,12 +81,12 @@ describe 'Orders' do
 
       response '201', 'Order created' do
         let(:params) { { order: attributes_for(:order) } }
-        before { … }
-
+        let(:order) { create(:order) }
         run_test!
       end
 
-      response '400', 'Order creation failed for parameter missing' do
+      response '422', 'Order creation failed for parameter missing' do
+        let(:order) { { amount: 10 } }
         run_test!
       end
     end
@@ -103,26 +103,25 @@ describe 'Orders' do
         type: :object,
         properties: {
           amount: { type: :number },
-          user_id: { type: :integer },
           payment_status_id: { type: :integer },
           order_status_id: { type: :integer }
         },
-        required: %w[amount user_id payment_status_id order_status_id]
+        required: %w[amount payment_status_id order_status_id]
       }
       produces 'application/json'
 
-      response '201', 'Order updated' do
-        let(:params) { { order: attributes_for(:order) } }
-        before { … }
-
-        run_test!
-      end
-
       response '204', 'Order updated - No content returned' do
+        let(:payment_status) { create(:payment_status) }
+        let(:order_status) { create(:order_status) }
+        let(:params) { { order: attributes_for(:order) } }
+        let(:order) { create(:order) }
+        let(:id) { order.id }
         run_test!
       end
 
-      response '400', 'Order update failed for parameter missing' do
+      response '404', :not_found do
+        let(:order) { create(:order) }
+        let(:id) { 'invalid' }
         run_test!
       end
     end
@@ -137,13 +136,14 @@ describe 'Orders' do
       parameter name: :id, in: :path, type: :string
       produces 'application/json'
 
-      response '200', 'Destroy the order' do
-        let(:id) { create(:order).id }
-
+      response '204', 'Order detroyed - No content returned' do
+        let(:order) { create(:order) }
+        let(:id) { order.id }
         run_test!
       end
 
-      response '204', 'Order detroyed - No content returned' do
+      response '404', :not_found do
+        let!(:id) { 'invalid' }
         run_test!
       end
     end

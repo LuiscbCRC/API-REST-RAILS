@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :payment_status do
-    status { Faker::Lorem.word }
+    status { 'Pagada' }
   end
 end

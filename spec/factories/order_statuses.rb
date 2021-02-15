@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 
 FactoryBot.define do
   factory :order_status do
-    status { Faker::Lorem.word }
+    status { 'Entregada' }
   end
 end
