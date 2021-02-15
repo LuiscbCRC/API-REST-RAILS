@@ -3188,3 +3188,436 @@ FOREIGN KEY ("order_status_id")
   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(841656344129317710)[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MainsController#index as HTML
+Redirected to http://localhost:3000/api-docs
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 170)
+
+
+Started GET "/api-docs" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-15 12:42:14 -0600
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-15 12:42:15 -0600
+Started GET "/" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Processing by MainsController#index as HTML
+Redirected to http://localhost:3000/api-docs
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms | Allocations: 93)
+
+
+Started GET "/api-docs" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-15 12:43:25 -0600
+Started GET "/users" for 127.0.0.1 at 2021-02-15 12:43:31 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 14ms (Views: 3.0ms | ActiveRecord: 5.2ms | Allocations: 2681)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mOrder Destroy (3.4ms)[0m  [1m[31mDELETE FROM "orders"[0m
+  [1m[36mOrderStatus Destroy (0.9ms)[0m  [1m[31mDELETE FROM "order_statuses"[0m
+  [1m[36mPaymentStatus Destroy (0.7ms)[0m  [1m[31mDELETE FROM "payment_statuses"[0m
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mPaymentDate Destroy (0.5ms)[0m  [1m[31mDELETE FROM "payment_dates"[0m
+  [1m[36mDeliveryDate Destroy (0.6ms)[0m  [1m[31mDELETE FROM "delivery_dates"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (1.8ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Recibido"], ["created_at", "2021-02-15 18:43:47.101220"], ["updated_at", "2021-02-15 18:43:47.101220"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.3ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "En Preparación"], ["created_at", "2021-02-15 18:43:47.112691"], ["updated_at", "2021-02-15 18:43:47.112691"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.4ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "En Reparto"], ["created_at", "2021-02-15 18:43:47.118621"], ["updated_at", "2021-02-15 18:43:47.118621"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.3ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Entregada"], ["created_at", "2021-02-15 18:43:47.125856"], ["updated_at", "2021-02-15 18:43:47.125856"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.5ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Pendiente de Pago"], ["created_at", "2021-02-15 18:43:47.141084"], ["updated_at", "2021-02-15 18:43:47.141084"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.3ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "No Pagada"], ["created_at", "2021-02-15 18:43:47.164674"], ["updated_at", "2021-02-15 18:43:47.164674"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.4ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Pagada"], ["created_at", "2021-02-15 18:43:47.167937"], ["updated_at", "2021-02-15 18:43:47.167937"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ramon@kunze.name"], ["LIMIT", 1]]
+  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Renaldo Hirthe CPA"], ["email", "ramon@kunze.name"], ["created_at", "2021-02-15 18:43:47.314592"], ["updated_at", "2021-02-15 18:43:47.314592"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lili_feil@greenholt.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jorge Klein"], ["email", "lili_feil@greenholt.org"], ["created_at", "2021-02-15 18:43:47.323340"], ["updated_at", "2021-02-15 18:43:47.323340"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hayden_kuhlman@borer.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Renita Reynolds"], ["email", "hayden_kuhlman@borer.com"], ["created_at", "2021-02-15 18:43:47.328066"], ["updated_at", "2021-02-15 18:43:47.328066"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carole_collins@wyman.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Gene Ratke"], ["email", "carole_collins@wyman.com"], ["created_at", "2021-02-15 18:43:47.332300"], ["updated_at", "2021-02-15 18:43:47.332300"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "berneice@sanford-herzog.name"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Lazaro Roob"], ["email", "berneice@sanford-herzog.name"], ["created_at", "2021-02-15 18:43:47.336800"], ["updated_at", "2021-02-15 18:43:47.336800"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "huey@glover.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Lou Schneider I"], ["email", "huey@glover.org"], ["created_at", "2021-02-15 18:43:47.341499"], ["updated_at", "2021-02-15 18:43:47.341499"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "christoper_stokes@windler.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Linnea Welch"], ["email", "christoper_stokes@windler.co"], ["created_at", "2021-02-15 18:43:47.346087"], ["updated_at", "2021-02-15 18:43:47.346087"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "salvatore.hayes@koch-paucek.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Caleb Stokes"], ["email", "salvatore.hayes@koch-paucek.co"], ["created_at", "2021-02-15 18:43:47.350379"], ["updated_at", "2021-02-15 18:43:47.350379"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dustin@rutherford.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ahmed Hills"], ["email", "dustin@rutherford.org"], ["created_at", "2021-02-15 18:43:47.355547"], ["updated_at", "2021-02-15 18:43:47.355547"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "terry@weber.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Sindy Haag"], ["email", "terry@weber.com"], ["created_at", "2021-02-15 18:43:47.359967"], ["updated_at", "2021-02-15 18:43:47.359967"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (3.8ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 73.73], ["user_id", 8], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 18:43:47.376286"], ["updated_at", "2021-02-15 18:43:47.376286"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.5ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 50.94], ["user_id", 4], ["payment_status_id", 3], ["order_status_id", 4], ["created_at", "2021-02-15 18:43:47.388607"], ["updated_at", "2021-02-15 18:43:47.388607"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 29.17], ["user_id", 4], ["payment_status_id", 3], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.395855"], ["updated_at", "2021-02-15 18:43:47.395855"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.8ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 10.67], ["user_id", 2], ["payment_status_id", 1], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.402848"], ["updated_at", "2021-02-15 18:43:47.402848"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.5ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 76.61], ["user_id", 6], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 18:43:47.410585"], ["updated_at", "2021-02-15 18:43:47.410585"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 15.21], ["user_id", 8], ["payment_status_id", 3], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.419000"], ["updated_at", "2021-02-15 18:43:47.419000"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 40.61], ["user_id", 3], ["payment_status_id", 3], ["order_status_id", 4], ["created_at", "2021-02-15 18:43:47.426106"], ["updated_at", "2021-02-15 18:43:47.426106"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 26.73], ["user_id", 9], ["payment_status_id", 1], ["order_status_id", 3], ["created_at", "2021-02-15 18:43:47.432848"], ["updated_at", "2021-02-15 18:43:47.432848"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 84.99], ["user_id", 10], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 18:43:47.439434"], ["updated_at", "2021-02-15 18:43:47.439434"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 52.01], ["user_id", 10], ["payment_status_id", 1], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.444970"], ["updated_at", "2021-02-15 18:43:47.444970"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.5ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 88.65], ["user_id", 3], ["payment_status_id", 1], ["order_status_id", 3], ["created_at", "2021-02-15 18:43:47.451307"], ["updated_at", "2021-02-15 18:43:47.451307"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 36.06], ["user_id", 4], ["payment_status_id", 2], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.460183"], ["updated_at", "2021-02-15 18:43:47.460183"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 19.72], ["user_id", 9], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 18:43:47.467048"], ["updated_at", "2021-02-15 18:43:47.467048"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 45.05], ["user_id", 2], ["payment_status_id", 2], ["order_status_id", 3], ["created_at", "2021-02-15 18:43:47.474722"], ["updated_at", "2021-02-15 18:43:47.474722"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.8ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.5ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.7ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 58.45], ["user_id", 10], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 18:43:47.486445"], ["updated_at", "2021-02-15 18:43:47.486445"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.5ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 92.09], ["user_id", 7], ["payment_status_id", 2], ["order_status_id", 3], ["created_at", "2021-02-15 18:43:47.497656"], ["updated_at", "2021-02-15 18:43:47.497656"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 16.85], ["user_id", 9], ["payment_status_id", 2], ["order_status_id", 4], ["created_at", "2021-02-15 18:43:47.505418"], ["updated_at", "2021-02-15 18:43:47.505418"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 46.55], ["user_id", 8], ["payment_status_id", 3], ["order_status_id", 1], ["created_at", "2021-02-15 18:43:47.511615"], ["updated_at", "2021-02-15 18:43:47.511615"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 55.35], ["user_id", 2], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 18:43:47.518093"], ["updated_at", "2021-02-15 18:43:47.518093"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 55.46], ["user_id", 1], ["payment_status_id", 1], ["order_status_id", 2], ["created_at", "2021-02-15 18:43:47.543580"], ["updated_at", "2021-02-15 18:43:47.543580"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-02-15 12:44:07 -0600
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-15 12:44:07 -0600
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-15 12:44:07 -0600
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-15 12:44:07 -0600
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-15 12:44:07 -0600
+Started GET "/users" for 127.0.0.1 at 2021-02-15 12:44:17 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 21ms (Views: 9.3ms | ActiveRecord: 8.2ms | Allocations: 7095)
+
+
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /orders
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started POST "/orders" for 127.0.0.1 at 2021-02-15 12:45:50 -0600
+Processing by OrdersController#create as */*
+  Parameters: {"amount"=>500, "user_id"=>1, "payment_status_id"=>1, "order_status_id"=>2, "order"=>{"amount"=>500, "user_id"=>1, "payment_status_id"=>1, "order_status_id"=>2}}
+[31mUnpermitted parameter: :order[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" WHERE "payment_statuses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mOrderStatus Load (0.4ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" WHERE "order_statuses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mOrder Create (1.0ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500.0], ["user_id", 1], ["payment_status_id", 1], ["order_status_id", 2], ["created_at", "2021-02-15 18:45:50.697373"], ["updated_at", "2021-02-15 18:45:50.697373"]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 201 Created in 64ms (Views: 0.4ms | ActiveRecord: 11.9ms | Allocations: 20736)
+
+
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /users/1
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started DELETE "/users/1" for 127.0.0.1 at 2021-02-15 12:46:11 -0600
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `set_user'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (4.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 4.7ms | Allocations: 2806)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  update or delete on table "users" violates foreign key constraint "fk_rails_f868b47f6a" on table "orders"
+DETAIL:  Key (id)=(1) is still referenced from table "orders".
+):
+  
+app/controllers/users_controller.rb:31:in `destroy'
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Started GET "/" for 127.0.0.1 at 2021-02-15 12:47:23 -0600
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MainsController#index as HTML
+Redirected to http://localhost:3000/api-docs
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 170)
+
+
+Started GET "/api-docs" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-15 12:47:24 -0600
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /users/1
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started DELETE "/users/1" for 127.0.0.1 at 2021-02-15 12:47:31 -0600
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `set_user'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (3.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 11.8ms | Allocations: 8252)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  update or delete on table "users" violates foreign key constraint "fk_rails_f868b47f6a" on table "orders"
+DETAIL:  Key (id)=(1) is still referenced from table "orders".
+):
+  
+app/controllers/users_controller.rb:31:in `destroy'
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-02-15 12:49:38 -0600
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-15 12:49:38 -0600
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-15 12:49:38 -0600
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-15 12:49:38 -0600
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-02-15 12:49:39 -0600
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-15 12:49:39 -0600
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /users/1
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started DELETE "/users/1" for 127.0.0.1 at 2021-02-15 12:49:45 -0600
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `set_user'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.4ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 20]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.3ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 21]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (1.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+Completed 204 No Content in 90ms (ActiveRecord: 14.4ms | Allocations: 22554)
+
+
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Started GET "/users" for 127.0.0.1 at 2021-02-15 12:49:59 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 1973)
+
+
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /orders
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started POST "/orders" for 127.0.0.1 at 2021-02-15 12:50:20 -0600
+Processing by OrdersController#create as */*
+  Parameters: {"amount"=>666, "user_id"=>2, "payment_status_id"=>2, "order_status_id"=>2, "order"=>{"amount"=>666, "user_id"=>2, "payment_status_id"=>2, "order_status_id"=>2}}
+[31mUnpermitted parameter: :order[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" WHERE "payment_statuses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mOrderStatus Load (0.5ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" WHERE "order_statuses"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mOrder Create (1.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 666.0], ["user_id", 2], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 18:50:20.415758"], ["updated_at", "2021-02-15 18:50:20.415758"]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 201 Created in 38ms (Views: 0.4ms | ActiveRecord: 8.4ms | Allocations: 13689)
+
+
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /users/2
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started DELETE "/users/2" for 127.0.0.1 at 2021-02-15 12:50:29 -0600
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `set_user'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.2ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.2ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 14]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.2ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 19]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mOrder Destroy (0.2ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 22]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+Completed 204 No Content in 14ms (ActiveRecord: 2.5ms | Allocations: 7447)
+
+
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
+Incoming Headers:
+  Origin: http://localhost:3000
+  Path-Info: /users/2
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+Started DELETE "/users/2" for 127.0.0.1 at 2021-02-15 12:50:42 -0600
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `set_user'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 679)
+
+
+{"Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Methods"=>"GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD", "Access-Control-Expose-Headers"=>"", "Access-Control-Max-Age"=>"0"}
