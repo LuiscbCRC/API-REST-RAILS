@@ -56,11 +56,13 @@ describe 'Users' do
 
       response '201', 'User created' do
         let(:params) { { user: attributes_for(:user) } }
-
+        let(:user) { build(:user, email: Faker::Internet.email) }
         run_test!
       end
 
-      response '400', 'User creation failed for parameter missing' do
+      response '422', 'User creation failed for email missing' do
+        let(:params) { { user: attributes_for(:user) } }
+        let(:user) { build(:user, email: nil) }
         run_test!
       end
     end
@@ -83,17 +85,18 @@ describe 'Users' do
       }
       produces 'application/json'
 
-      response '201', 'User created' do
+      response '204', 'User created' do
         let(:params) { { user: attributes_for(:user) } }
+        let(:user) { create(:user) }
+        let(:id) { user.id }
 
         run_test!
       end
 
-      response '204', 'User updated' do
-        run_test!
-      end
-
-      response '400', 'User creation failed for parameter missing' do
+      response '404', 'Cant find any user' do
+        let(:params) { { user: attributes_for(:user) } }
+        let(:user) { create(:user) }
+        let(:id) { -1 }
         run_test!
       end
     end
@@ -108,12 +111,15 @@ describe 'Users' do
       parameter name: :id, in: :path, type: :string
       produces 'application/json'
 
-      response '200', 'Destroy the user' do
-        let(:id) { create(:user).id }
+      response '204', 'Destroy the user' do
+        let(:user) { create(:user) }
+        let(:id) { user.id }
 
         run_test!
       end
       response '204', 'Destroy the user' do
+        let(:user) { create(:user) }
+        let(:id) { user.id }
         run_test!
       end
     end

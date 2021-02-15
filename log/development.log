@@ -2811,3 +2811,380 @@ Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-02-12 07:04:43 -060
 Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-02-12 07:04:43 -0600
 Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-02-12 07:04:43 -0600
 Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-02-12 07:04:43 -0600
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Destroy (15.1ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (52.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "docker_rails_development"[0m
+  [1m[35m (37.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "docker_rails_test"[0m
+  [1m[35m (130.2ms)[0m  [1m[35mCREATE DATABASE "docker_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (55.4ms)[0m  [1m[35mCREATE DATABASE "docker_rails_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "delivery_dates" CASCADE[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "delivery_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "order_statuses" CASCADE[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "order_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "orders" CASCADE[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "amount" float, "user_id" bigint NOT NULL, "payment_status_id" bigint NOT NULL, "order_status_id" bigint NOT NULL, "delivery_date_id" bigint, "payment_date_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_delivery_date_id" ON "orders"  ("delivery_date_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_order_status_id" ON "orders"  ("order_status_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_date_id" ON "orders"  ("payment_date_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_status_id" ON "orders"  ("payment_status_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_user_id" ON "orders"  ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "payment_dates" CASCADE[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "payment_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "payment_statuses" CASCADE[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "payment_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_7a22cf8b0e"
+FOREIGN KEY ("order_status_id")
+  REFERENCES "order_statuses" ("id")
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_723e7dd5ba"
+FOREIGN KEY ("payment_status_id")
+  REFERENCES "payment_statuses" ("id")
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210211040443)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210211040008),
+(20210211040128),
+(20210211040145),
+(20210211040214),
+(20210211040226);
+
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-15 17:53:22.334409"], ["updated_at", "2021-02-15 17:53:22.334409"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "2b80d277b4135df62bc6ccbadef1d1c8d3c6e27a"], ["created_at", "2021-02-15 17:53:22.347598"], ["updated_at", "2021-02-15 17:53:22.347598"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "delivery_dates" CASCADE[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "delivery_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "order_statuses" CASCADE[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "order_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "orders" CASCADE[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "amount" float, "user_id" bigint NOT NULL, "payment_status_id" bigint NOT NULL, "order_status_id" bigint NOT NULL, "delivery_date_id" bigint, "payment_date_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_delivery_date_id" ON "orders"  ("delivery_date_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_order_status_id" ON "orders"  ("order_status_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_date_id" ON "orders"  ("payment_date_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_status_id" ON "orders"  ("payment_status_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_user_id" ON "orders"  ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "payment_dates" CASCADE[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "payment_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "payment_statuses" CASCADE[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "payment_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_7a22cf8b0e"
+FOREIGN KEY ("order_status_id")
+  REFERENCES "order_statuses" ("id")
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_723e7dd5ba"
+FOREIGN KEY ("payment_status_id")
+  REFERENCES "payment_statuses" ("id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "orders" ADD CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210211040443)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210211040008),
+(20210211040128),
+(20210211040145),
+(20210211040214),
+(20210211040226);
+
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-15 17:53:22.453953"], ["updated_at", "2021-02-15 17:53:22.453953"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-02-15 17:53:22.458274"], ["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "2b80d277b4135df62bc6ccbadef1d1c8d3c6e27a"], ["created_at", "2021-02-15 17:53:22.462149"], ["updated_at", "2021-02-15 17:53:22.462149"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mOrder Destroy (0.5ms)[0m  [1m[31mDELETE FROM "orders"[0m
+  [1m[36mOrderStatus Destroy (0.3ms)[0m  [1m[31mDELETE FROM "order_statuses"[0m
+  [1m[36mPaymentStatus Destroy (0.3ms)[0m  [1m[31mDELETE FROM "payment_statuses"[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mPaymentDate Destroy (0.3ms)[0m  [1m[31mDELETE FROM "payment_dates"[0m
+  [1m[36mDeliveryDate Destroy (0.3ms)[0m  [1m[31mDELETE FROM "delivery_dates"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.4ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Recibido"], ["created_at", "2021-02-15 17:53:22.521359"], ["updated_at", "2021-02-15 17:53:22.521359"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.2ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "En Preparación"], ["created_at", "2021-02-15 17:53:22.524518"], ["updated_at", "2021-02-15 17:53:22.524518"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.2ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "En Reparto"], ["created_at", "2021-02-15 17:53:22.527492"], ["updated_at", "2021-02-15 17:53:22.527492"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrderStatus Create (0.2ms)[0m  [1m[32mINSERT INTO "order_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Entregada"], ["created_at", "2021-02-15 17:53:22.530742"], ["updated_at", "2021-02-15 17:53:22.530742"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.4ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Pendiente de Pago"], ["created_at", "2021-02-15 17:53:22.537247"], ["updated_at", "2021-02-15 17:53:22.537247"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.2ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "No Pagada"], ["created_at", "2021-02-15 17:53:22.540356"], ["updated_at", "2021-02-15 17:53:22.540356"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaymentStatus Create (0.2ms)[0m  [1m[32mINSERT INTO "payment_statuses" ("status", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["status", "Pagada"], ["created_at", "2021-02-15 17:53:22.543196"], ["updated_at", "2021-02-15 17:53:22.543196"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "roma@marvin.info"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Matt Hansen I"], ["email", "roma@marvin.info"], ["created_at", "2021-02-15 17:53:22.703126"], ["updated_at", "2021-02-15 17:53:22.703126"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rhea.mayer@abbott.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Austin Rowe"], ["email", "rhea.mayer@abbott.com"], ["created_at", "2021-02-15 17:53:22.711523"], ["updated_at", "2021-02-15 17:53:22.711523"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "grant@emard.info"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Shaquita Fay"], ["email", "grant@emard.info"], ["created_at", "2021-02-15 17:53:22.720075"], ["updated_at", "2021-02-15 17:53:22.720075"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "paul@hudson.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Fr. Roberto Bartell"], ["email", "paul@hudson.biz"], ["created_at", "2021-02-15 17:53:22.725833"], ["updated_at", "2021-02-15 17:53:22.725833"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "chong_will@hilll-walter.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Colton Huels"], ["email", "chong_will@hilll-walter.biz"], ["created_at", "2021-02-15 17:53:22.731335"], ["updated_at", "2021-02-15 17:53:22.731335"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nigel@windler.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Keira Emmerich DDS"], ["email", "nigel@windler.co"], ["created_at", "2021-02-15 17:53:22.736160"], ["updated_at", "2021-02-15 17:53:22.736160"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lamar.schroeder@dickens.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Zachary Altenwerth"], ["email", "lamar.schroeder@dickens.io"], ["created_at", "2021-02-15 17:53:22.740950"], ["updated_at", "2021-02-15 17:53:22.740950"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kelsey.corkery@brekke-corkery.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Sandee Toy"], ["email", "kelsey.corkery@brekke-corkery.biz"], ["created_at", "2021-02-15 17:53:22.745696"], ["updated_at", "2021-02-15 17:53:22.745696"]]
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "valentine.feeney@anderson.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Merrie Hessel"], ["email", "valentine.feeney@anderson.net"], ["created_at", "2021-02-15 17:53:22.756297"], ["updated_at", "2021-02-15 17:53:22.756297"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "brain.shanahan@blick.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Dierdre Cummerata"], ["email", "brain.shanahan@blick.net"], ["created_at", "2021-02-15 17:53:22.760530"], ["updated_at", "2021-02-15 17:53:22.760530"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 75.31], ["user_id", 3], ["payment_status_id", 1], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.776484"], ["updated_at", "2021-02-15 17:53:22.776484"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 61.42], ["user_id", 3], ["payment_status_id", 2], ["order_status_id", 3], ["created_at", "2021-02-15 17:53:22.783868"], ["updated_at", "2021-02-15 17:53:22.783868"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 95.42], ["user_id", 7], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.789659"], ["updated_at", "2021-02-15 17:53:22.789659"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 83.13], ["user_id", 1], ["payment_status_id", 2], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.795560"], ["updated_at", "2021-02-15 17:53:22.795560"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.1ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 12.51], ["user_id", 9], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.801883"], ["updated_at", "2021-02-15 17:53:22.801883"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.1ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 15.09], ["user_id", 6], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.807333"], ["updated_at", "2021-02-15 17:53:22.807333"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 13.81], ["user_id", 10], ["payment_status_id", 3], ["order_status_id", 1], ["created_at", "2021-02-15 17:53:22.813703"], ["updated_at", "2021-02-15 17:53:22.813703"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 19.48], ["user_id", 8], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.820115"], ["updated_at", "2021-02-15 17:53:22.820115"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 71.35], ["user_id", 4], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.825506"], ["updated_at", "2021-02-15 17:53:22.825506"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 68.45], ["user_id", 8], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.831803"], ["updated_at", "2021-02-15 17:53:22.831803"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 11.95], ["user_id", 1], ["payment_status_id", 2], ["order_status_id", 3], ["created_at", "2021-02-15 17:53:22.837453"], ["updated_at", "2021-02-15 17:53:22.837453"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.1ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 91.47], ["user_id", 10], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.842911"], ["updated_at", "2021-02-15 17:53:22.842911"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 50.76], ["user_id", 10], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.849212"], ["updated_at", "2021-02-15 17:53:22.849212"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 76.74], ["user_id", 4], ["payment_status_id", 1], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.854978"], ["updated_at", "2021-02-15 17:53:22.854978"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.1ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 40.58], ["user_id", 5], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.860433"], ["updated_at", "2021-02-15 17:53:22.860433"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 67.55], ["user_id", 3], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.866957"], ["updated_at", "2021-02-15 17:53:22.866957"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.2ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 50.63], ["user_id", 10], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.872953"], ["updated_at", "2021-02-15 17:53:22.872953"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 30.69], ["user_id", 8], ["payment_status_id", 1], ["order_status_id", 4], ["created_at", "2021-02-15 17:53:22.880152"], ["updated_at", "2021-02-15 17:53:22.880152"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.3ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.2ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 29.02], ["user_id", 5], ["payment_status_id", 2], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.907043"], ["updated_at", "2021-02-15 17:53:22.907043"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrderStatus Load (0.4ms)[0m  [1m[34mSELECT "order_statuses".* FROM "order_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPaymentStatus Load (0.3ms)[0m  [1m[34mSELECT "payment_statuses".* FROM "payment_statuses" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("amount", "user_id", "payment_status_id", "order_status_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 11.88], ["user_id", 4], ["payment_status_id", 3], ["order_status_id", 2], ["created_at", "2021-02-15 17:53:22.914065"], ["updated_at", "2021-02-15 17:53:22.914065"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(841656344129317710)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(841656344129317710)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (37.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "docker_rails_development"[0m
+  [1m[35m (29.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "docker_rails_test"[0m
+  [1m[35m (119.7ms)[0m  [1m[35mCREATE DATABASE "docker_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (53.9ms)[0m  [1m[35mCREATE DATABASE "docker_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (32.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(841656344129317710)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210211040008)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040008"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePaymentStatuses (20210211040128)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "payment_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040128"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrderStatuses (20210211040145)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "order_statuses" ("id" bigserial primary key, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040145"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDeliveryDates (20210211040214)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "delivery_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040214"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePaymentDates (20210211040226)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "payment_dates" ("id" bigserial primary key, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040226"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20210211040443)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "amount" float, "user_id" bigint NOT NULL, "payment_status_id" bigint NOT NULL, "order_status_id" bigint NOT NULL, "delivery_date_id" bigint, "payment_date_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_f868b47f6a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_723e7dd5ba"
+FOREIGN KEY ("payment_status_id")
+  REFERENCES "payment_statuses" ("id")
+, CONSTRAINT "fk_rails_7a22cf8b0e"
+FOREIGN KEY ("order_status_id")
+  REFERENCES "order_statuses" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_user_id" ON "orders"  ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_status_id" ON "orders"  ("payment_status_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_order_status_id" ON "orders"  ("order_status_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_delivery_date_id" ON "orders"  ("delivery_date_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_payment_date_id" ON "orders"  ("payment_date_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210211040443"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-15 17:54:14.410904"], ["updated_at", "2021-02-15 17:54:14.410904"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(841656344129317710)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
